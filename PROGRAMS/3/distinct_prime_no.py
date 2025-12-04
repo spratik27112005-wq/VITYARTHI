@@ -1,3 +1,5 @@
+import time
+import tracemalloc
 def count_distinct_prime_factorial(n):
     if n < 2:
         return 0  # 0 and 1 have no prime factors
@@ -14,6 +16,12 @@ def count_distinct_prime_factorial(n):
         count += 1  # n itself is a prime number
 
     return count
+tracemalloc.start()
+start_time = time.time()
 print(count_distinct_prime_factorial(60))  
   
- 
+end_time = time.time()
+current, peak = tracemalloc.get_traced_memory()
+print("Time taken:", (end_time - start_time), "seconds")
+print("Memory used:", current, "bytes (current),", peak, "bytes (peak)")
+tracemalloc.stop()
